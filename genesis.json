@@ -1,0 +1,167 @@
+{
+  "transactions": [
+    [
+      {
+        "Register": {
+          "NewDomain": {
+            "id": "cbdc",
+            "logo": null,
+            "metadata": {}
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewDomain": {
+            "id": "iroha",
+            "logo": null,
+            "metadata": {}
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewAccount": {
+            "id": "admin@cbdc",
+            "signatories": [
+              "ed01207233BFC89DCBD68C19FDE6CE6158225298EC1131B6A130D1AEB454C1AB5183C0"
+            ],
+            "metadata": {}
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewAccount": {
+            "id": "bokolo_bridge@iroha",
+            "signatories": [
+              "ed012070ca56e3dee6ca9494205a63d55b1006ca609b5ef9bc6835a3aef2d2d8c5103c"
+            ],
+            "metadata": {}
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewAssetDefinition": {
+            "id": "usd#cbdc",
+            "value_type": "Fixed",
+            "mintable": "Infinitely",
+            "logo": null,
+            "metadata": {
+              "code": {
+                "String": "USD"
+              },
+              "name": {
+                "String": "US Dollar"
+              },
+              "symbol": {
+                "String": "$"
+              },
+              "decimals": {
+                "String": "2"
+              }
+            }
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewAssetDefinition": {
+            "id": "eur#cbdc",
+            "value_type": "Fixed",
+            "mintable": "Infinitely",
+            "logo": null,
+            "metadata": {
+              "code": {
+                "String": "EUR"
+              },
+              "name": {
+                "String": "Euro"
+              },
+              "symbol": {
+                "String": "€"
+              },
+              "decimals": {
+                "String": "2"
+              }
+            }
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewAssetDefinition": {
+            "id": "metadata#cbdc",
+            "value_type": "Store",
+            "mintable": "Infinitely",
+            "logo": null,
+            "metadata": {}
+          }
+        }
+      },
+      {
+        "SetKeyValue": {
+          "AssetId": "metadata#cbdc#admin@cbdc",
+          "key": {
+            "Name": "block_height"
+          },
+          "value": "1_u128"
+        }
+      },
+      {
+        "Register": {
+          "NewRole": {
+            "id": "USER_METADATA_ACCESS",
+            "permissions": [
+              {
+                "definition_id": "CanRemoveKeyValueInUserAccount",
+                "payload": {
+                  "account_id": "admin@cbdc"
+                }
+              },
+              {
+                "definition_id": "CanSetKeyValueInUserAccount",
+                "payload": {
+                  "account_id": "admin@cbdc"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Register": {
+          "NewRole": {
+            "id": "MINT_ASSETS_WITH_DEFINITIONS",
+            "permissions": [
+              {
+                "definition_id": "CanMintAssetsWithDefinition",
+                "payload": {
+                  "asset_definition_id": "usd#cbdc"
+                }
+              },
+              {
+                "definition_id": "CanMintAssetsWithDefinition",
+                "payload": {
+                  "asset_definition_id": "eur#cbdc"
+                }
+              }
+            ]
+          }
+        }
+      },
+      {
+        "Grant": {
+          "object": {
+            "RoleId": "MINT_ASSETS_WITH_DEFINITIONS"
+          },
+          "destination_id": {
+            "AccountId": "admin@cbdc"
+          }
+        }
+      }
+    ]
+  ],
+  "executor": "./executor.wasm"
+}
