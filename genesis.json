@@ -24,7 +24,7 @@
           "NewAccount": {
             "id": "admin@cbdc",
             "signatories": [
-              "ed01207233BFC89DCBD68C19FDE6CE6158225298EC1131B6A130D1AEB454C1AB5183C0"
+              "ed0120666c9662913ee9506ff8ca90d72605d51929f3241f77e75be118c5732abec1c2"
             ],
             "metadata": {}
           }
